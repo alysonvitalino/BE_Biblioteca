@@ -6,7 +6,8 @@
         public string Titulo { get; set; } = string.Empty;
         public int Ano { get; set; }
         public string Autor { get; set; } = string.Empty;
-        public int Quantidade { get; set; }
+        public int QuantidadeEstoque { get; set; }
         public string Capa { get; set; } = string.Empty;
+        public int QuantidadeEmprestada { get; set; }
     }
 }
