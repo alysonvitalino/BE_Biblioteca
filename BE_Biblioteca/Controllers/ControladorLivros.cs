@@ -16,7 +16,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Dom Casmurro",
                 Autor = "Machado de Assis",
                 Ano = 1899,
-                Quantidade = 2,   
+                QuantidadeEstoque = 2,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -25,7 +25,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Memórias Póstumas de Brás Cubas",
                 Autor = "Machado de Assis",
                 Ano = 1881,
-                Quantidade = 3,
+                QuantidadeEstoque = 3,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -34,7 +34,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Grande Sertão: Veredas",
                 Autor = "João Guimarães Rosa",
                 Ano = 1956,
-                Quantidade = 4,
+                QuantidadeEstoque = 4,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -43,7 +43,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "O Cortiço",
                 Autor = "Aluísio Azevedo",
                 Ano = 1890,
-                Quantidade = 4,
+                QuantidadeEstoque = 4,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -52,7 +52,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Iracema",
                 Autor = "José de Alencar",
                 Ano = 1865,
-                Quantidade = 1,
+                QuantidadeEstoque = 1,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -61,7 +61,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Macunaíma",
                 Autor = "Mário de Andrade",
                 Ano = 1928,
-                Quantidade = 11,
+                QuantidadeEstoque = 11,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -70,7 +70,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Capitães da Areia",
                 Autor = "Jorge Amado",
                 Ano = 1937,
-                Quantidade = 2,
+                QuantidadeEstoque = 2,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -79,7 +79,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Vidas Secas",
                 Autor = "Graciliano Ramos",
                 Ano = 1938,
-                Quantidade = 9,
+                QuantidadeEstoque = 9,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -88,7 +88,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "A Moreninha",
                 Autor = "Joaquim Manuel de Macedo",
                 Ano = 1844,
-                Quantidade = 2,
+                QuantidadeEstoque = 2,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -97,7 +97,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "O Tempo e o Vento",
                 Autor = "Erico Verissimo",
                 Ano = 1949,
-                Quantidade = 1,
+                QuantidadeEstoque = 1,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -106,7 +106,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "A Hora da Estrela",
                 Autor = "Clarice Lispector",
                 Ano = 1977,
-                Quantidade = 1,
+                QuantidadeEstoque = 1,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -115,7 +115,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "O Quinze",
                 Autor = "Rachel de Queiroz",
                 Ano = 1930,
-                Quantidade = 1,
+                QuantidadeEstoque = 1,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -124,7 +124,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Menino do Engenho",
                 Autor = "José Lins do Rego",
                 Ano = 1932,
-                Quantidade = 5,
+                QuantidadeEstoque = 5,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -133,7 +133,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Sagarana",
                 Autor = "João Guimarães Rosa",
                 Ano = 1946,
-                Quantidade = 3,
+                QuantidadeEstoque = 3,
                 Capa = "URL AQ",
             },
             new ModeloLivro
@@ -142,7 +142,7 @@ namespace BE_Biblioteca.Controllers
                 Titulo = "Fogo Morto",
                 Autor = "José Lins do Rego",
                 Ano = 1943,
-                Quantidade = 1,
+                QuantidadeEstoque = 1,
                 Capa = "URL AQ",
             },
         };
@@ -170,6 +170,48 @@ namespace BE_Biblioteca.Controllers
 
             if (busca is null)
                 return NotFound("Este personagem não foi encontrado");
+
+            return Ok(busca);
+        }
+        [HttpPut("alugar/{id}")]
+        public ActionResult<List<ModeloLivro>> AlugarLivro(int id, ModeloLivro editar)
+        {
+            var busca = listaLivros.Find(x => x.Id == id);
+
+            if (busca is null)
+                return NotFound("Livro não encontrado");
+
+            busca.Titulo = editar.Titulo == "" || editar.Titulo == "string" ? busca.Titulo : editar.Titulo;
+            busca.Ano = editar.Ano == 0 ? busca.Ano : editar.Ano;
+            busca.Autor = editar.Autor == "" || editar.Autor == "string" ? busca.Autor : editar.Autor;
+            busca.QuantidadeEstoque = editar.QuantidadeEstoque == 0 ? busca.QuantidadeEstoque : editar.QuantidadeEstoque;
+
+            if (busca.QuantidadeEstoque == 0)
+                return Ok("Sem livros no estoque para o empréstimo!");
+
+            busca.QuantidadeEstoque = busca.QuantidadeEstoque - 1;
+            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada + 1;
+
+            return Ok(busca);
+        }
+        [HttpPut("devolucao/{id}")]
+        public ActionResult<List<ModeloLivro>> DevolverLivro(int id, ModeloLivro editar)
+        {
+            var busca = listaLivros.Find(x => x.Id == id);
+
+            if (busca is null)
+                return NotFound("Livro não encontrado");
+
+            busca.Titulo = editar.Titulo == "" || editar.Titulo == "string" ? busca.Titulo : editar.Titulo;
+            busca.Ano = editar.Ano == 0 ? busca.Ano : editar.Ano;
+            busca.Autor = editar.Autor == "" || editar.Autor == "string" ? busca.Autor : editar.Autor;
+            busca.QuantidadeEstoque = editar.QuantidadeEstoque == 0 ? busca.QuantidadeEstoque : editar.QuantidadeEstoque;
+
+            if (busca.QuantidadeEmprestada == 0)
+                return Ok("Sem livros emprestados para a devolução!");
+
+            busca.QuantidadeEstoque = busca.QuantidadeEstoque + 1;
+            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada - 1;
 
             return Ok(busca);
         }
