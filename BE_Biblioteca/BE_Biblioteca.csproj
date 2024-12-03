@@ -7,7 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\Menino_De_Engenho.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="assets\Menino_De_Engenho.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="assets\Dom_Casmurro.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
