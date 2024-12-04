@@ -173,7 +173,7 @@ namespace BE_Biblioteca.Controllers
 
             return Ok(busca);
         }
-        [HttpPut("alugar/{id}")]
+        [HttpPost("alugar/{id}")]
         public ActionResult<List<ModeloLivro>> AlugarLivro(int id, ModeloLivro editar)
         {
             var busca = listaLivros.Find(x => x.Id == id);
@@ -194,7 +194,7 @@ namespace BE_Biblioteca.Controllers
 
             return Ok(busca);
         }
-        [HttpPut("devolucao/{id}")]
+        [HttpPost("devolucao/{id}")]
         public ActionResult<List<ModeloLivro>> DevolverLivro(int id, ModeloLivro editar)
         {
             var busca = listaLivros.Find(x => x.Id == id);
