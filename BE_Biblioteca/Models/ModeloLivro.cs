@@ -10,4 +10,10 @@
         public string Capa { get; set; } = string.Empty;
         public int QuantidadeEmprestada { get; set; }
     }
+    public class ModeloEmprestimo
+    {
+        public int IdLivro { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public int AnoNasc { get; set; }
+    }
 }

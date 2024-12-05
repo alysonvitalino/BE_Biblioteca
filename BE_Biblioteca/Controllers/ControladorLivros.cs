@@ -8,6 +8,8 @@ namespace BE_Biblioteca.Controllers
     [ApiController]
     public class ControladorLivros : ControllerBase
     {
+        private static List<ModeloEmprestimo> listaEmprestimos = new List<ModeloEmprestimo> { };
+
         private static List<ModeloLivro> listaLivros = new List<ModeloLivro>
         {
             new ModeloLivro
@@ -147,13 +149,27 @@ namespace BE_Biblioteca.Controllers
             },
         };
 
-        [HttpGet]
+        [HttpGet("Livros")]
         public ActionResult<List<ModeloLivro>> ListarLivros()
         {
             return Ok(listaLivros);
         }
+        [HttpGet("Emprestimos")]
+        public ActionResult<List<ModeloLivro>> ListarEmprestimos()
+        {
+            return Ok(listaEmprestimos);
+        }
+        [HttpGet("{id}")]
+        public ActionResult<ModeloLivro> BuscaLivro(int id)
+        {
+            var busca = listaLivros.Find(x => x.Id == id);
 
-        [HttpPost]
+            if (busca is null)
+                return NotFound("Este livro não foi encontrado");
+
+            return Ok(busca);
+        }
+        [HttpPost("AdicionarLivro")]
         public ActionResult<List<ModeloLivro>> AdicionarLivro(ModeloLivro novo)
         {
             if (novo.Id == 0 && listaLivros.Count > 0)
@@ -162,56 +178,38 @@ namespace BE_Biblioteca.Controllers
             listaLivros.Add(novo);
             return Ok(listaLivros);
         }
-
-        [HttpGet("{id}")]
-        public ActionResult<ModeloLivro> BuscaLivro(int id)
+        [HttpPost("alugar")]
+        public ActionResult AlugarLivro(ModeloEmprestimo novoEmprestimo)
         {
-            var busca = listaLivros.Find(x => x.Id == id);
-
-            if (busca is null)
-                return NotFound("Este personagem não foi encontrado");
-
-            return Ok(busca);
-        }
-        [HttpPost("alugar/{id}")]
-        public ActionResult<List<ModeloLivro>> AlugarLivro(int id, ModeloLivro editar)
-        {
-            var busca = listaLivros.Find(x => x.Id == id);
+            var busca = listaLivros.Find(x => x.Id == novoEmprestimo.IdLivro);
 
             if (busca is null)
                 return NotFound("Livro não encontrado");
-
-            busca.Titulo = editar.Titulo == "" || editar.Titulo == "string" ? busca.Titulo : editar.Titulo;
-            busca.Ano = editar.Ano == 0 ? busca.Ano : editar.Ano;
-            busca.Autor = editar.Autor == "" || editar.Autor == "string" ? busca.Autor : editar.Autor;
-            busca.QuantidadeEstoque = editar.QuantidadeEstoque == 0 ? busca.QuantidadeEstoque : editar.QuantidadeEstoque;
 
             if (busca.QuantidadeEstoque == 0)
                 return Ok("Sem livros no estoque para o empréstimo!");
 
             busca.QuantidadeEstoque = busca.QuantidadeEstoque - 1;
             busca.QuantidadeEmprestada = busca.QuantidadeEmprestada + 1;
+            listaEmprestimos.Add(novoEmprestimo);
 
             return Ok(busca);
         }
-        [HttpPost("devolucao/{id}")]
-        public ActionResult<List<ModeloLivro>> DevolverLivro(int id, ModeloLivro editar)
+        [HttpPost("devolucao")]
+        public ActionResult<List<ModeloLivro>> DevolverLivro(ModeloEmprestimo editar)
         {
-            var busca = listaLivros.Find(x => x.Id == id);
+            var busca = listaLivros.Find(x => x.Id == editar.IdLivro);
 
             if (busca is null)
                 return NotFound("Livro não encontrado");
 
-            busca.Titulo = editar.Titulo == "" || editar.Titulo == "string" ? busca.Titulo : editar.Titulo;
-            busca.Ano = editar.Ano == 0 ? busca.Ano : editar.Ano;
-            busca.Autor = editar.Autor == "" || editar.Autor == "string" ? busca.Autor : editar.Autor;
-            busca.QuantidadeEstoque = editar.QuantidadeEstoque == 0 ? busca.QuantidadeEstoque : editar.QuantidadeEstoque;
+            if (busca.QuantidadeEstoque == 0)
+                return Ok("Sem livros no estoque para o empréstimo!");
 
-            if (busca.QuantidadeEmprestada == 0)
-                return Ok("Sem livros emprestados para a devolução!");
-
-            busca.QuantidadeEstoque = busca.QuantidadeEstoque + 1;
-            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada - 1;
+            
+            listaEmprestimos.Add(editar);
+            busca.QuantidadeEstoque = busca.QuantidadeEstoque++;
+            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada--;
 
             return Ok(busca);
         }
