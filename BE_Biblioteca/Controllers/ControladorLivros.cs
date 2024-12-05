@@ -1,4 +1,5 @@
-﻿using BE_Biblioteca.Models;
+﻿using System.Collections.Generic;
+using BE_Biblioteca.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -159,15 +160,21 @@ namespace BE_Biblioteca.Controllers
         {
             return Ok(listaEmprestimos);
         }
-        [HttpGet("{id}")]
-        public ActionResult<ModeloLivro> BuscaLivro(int id)
+        [HttpGet("{titulo}")]
+        public ActionResult<ModeloLivro> BuscaLivro(string titulo)
         {
-            var busca = listaLivros.Find(x => x.Id == id);
+            var list = new List<ModeloLivro>();
 
-            if (busca is null)
+            foreach (var item in listaLivros)
+            {
+                item.Titulo = item.Titulo.ToLower();
+                if (item.Titulo.Contains(titulo)) //CONTAINS BUSCA TODAS AS PALAVRAS QUE CONTÉM O PEDIDO // STARTSWITH BUSCA TODAS QUE COMEÇAM
+                    list.Add(item);             // ENDSWITH BUSCA TODAS QUE TERMINAM
+            }   
+            if (list is null)
                 return NotFound("Este livro não foi encontrado");
 
-            return Ok(busca);
+            return Ok(list);
         }
         [HttpPost("AdicionarLivro")]
         public ActionResult<List<ModeloLivro>> AdicionarLivro(ModeloLivro novo)
@@ -203,13 +210,13 @@ namespace BE_Biblioteca.Controllers
             if (busca is null)
                 return NotFound("Livro não encontrado");
 
-            if (busca.QuantidadeEstoque == 0)
-                return Ok("Sem livros no estoque para o empréstimo!");
+            if (busca.QuantidadeEmprestada == 0)
+                return Ok("Sem livros emprestados no momento!");
 
             
             listaEmprestimos.Add(editar);
-            busca.QuantidadeEstoque = busca.QuantidadeEstoque++;
-            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada--;
+            busca.QuantidadeEstoque = busca.QuantidadeEstoque + 1;
+            busca.QuantidadeEmprestada = busca.QuantidadeEmprestada - 1;
 
             return Ok(busca);
         }
