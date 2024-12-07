@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BE_Biblioteca.Models;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -149,6 +150,13 @@ namespace BE_Biblioteca.Controllers
                 Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Fogo_Morto.jpg",
             },
         };
+
+        [HttpGet("livro/{Id}")]
+        public ActionResult LivroPorId(int Id)
+        {
+            var busca = listaLivros.Find(x => x.Id == Id);
+            return Ok(busca);
+        }
 
         [HttpGet("Livros")]
         public ActionResult<List<ModeloLivro>> ListarLivros()
