@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,24 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\A_Hora_da_Estrela.png" />
+    <None Include="wwwroot\assets\A_Moreninha.jpeg" />
+    <None Include="wwwroot\assets\Capitaes_De_Areia.png" />
+    <None Include="wwwroot\assets\Dom_Casmurro.jpeg" />
+    <None Include="wwwroot\assets\Fogo_Morto.jpg" />
+    <None Include="wwwroot\assets\Grande_Sertao_Veredas.png" />
+    <None Include="wwwroot\assets\Iracema.jpg" />
+    <None Include="wwwroot\assets\Macunaima.jpg" />
+    <None Include="wwwroot\assets\Memorias_Postumas.webp" />
+    <None Include="wwwroot\assets\Menino_De_Engenho.jpg" />
+    <None Include="wwwroot\assets\O_Cortiço.webp" />
+    <None Include="wwwroot\assets\O_Quinze.jpeg" />
+    <None Include="wwwroot\assets\O_Tempo_E_O_Vento.png" />
+    <None Include="wwwroot\assets\Sagarana.jpg" />
+    <None Include="wwwroot\assets\Vidas_Secas.png" />
   </ItemGroup>
 
 </Project>

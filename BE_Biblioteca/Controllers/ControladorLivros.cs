@@ -21,7 +21,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Machado de Assis",
                 Ano = 1899,
                 QuantidadeEstoque = 2,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Dom_Casmurro.jpeg",
+                Capa = "/assets/Dom_Casmurro.jpeg",
             },
             new ModeloLivro
             {
@@ -30,7 +30,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Machado de Assis",
                 Ano = 1881,
                 QuantidadeEstoque = 3,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Memorias_Postumas.webp",
+                Capa = "/assets/Memorias_Postumas.webp",
             },
             new ModeloLivro
             {
@@ -39,7 +39,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "João Guimarães Rosa",
                 Ano = 1956,
                 QuantidadeEstoque = 4,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Grande_Sertao_Veredas.png",
+                Capa = "/assets/Grande_Sertao_Veredas.png",
             },
             new ModeloLivro
             {
@@ -48,7 +48,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Aluísio Azevedo",
                 Ano = 1890,
                 QuantidadeEstoque = 4,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\O_Cortiço.webp",
+                Capa = "/assets/O_Cortiço.webp",
             },
             new ModeloLivro
             {
@@ -57,7 +57,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "José de Alencar",
                 Ano = 1865,
                 QuantidadeEstoque = 1,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Iracema.jpg",
+                Capa = "/assets/Iracema.jpg",
             },
             new ModeloLivro
             {
@@ -66,7 +66,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Mário de Andrade",
                 Ano = 1928,
                 QuantidadeEstoque = 11,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Macunaima.jpg",
+                Capa = "/assets/Macunaima.jpg",
             },
             new ModeloLivro
             {
@@ -75,7 +75,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Jorge Amado",
                 Ano = 1937,
                 QuantidadeEstoque = 2,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Capitaes_De_Areia.png",
+                Capa = "/assets/Capitaes_De_Areia.png",
             },
             new ModeloLivro
             {
@@ -84,7 +84,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Graciliano Ramos",
                 Ano = 1938,
                 QuantidadeEstoque = 9,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Vidas_Secas.png",
+                Capa = "/assets/Vidas_Secas.png",
             },
             new ModeloLivro
             {
@@ -93,7 +93,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Joaquim Manuel de Macedo",
                 Ano = 1844,
                 QuantidadeEstoque = 2,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\A_Moreninha.jpeg",
+                Capa = "/assets/A_Moreninha.jpeg",
             },
             new ModeloLivro
             {
@@ -102,7 +102,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Erico Verissimo",
                 Ano = 1949,
                 QuantidadeEstoque = 1,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\O_Tempo_E_O_Vento.png",
+                Capa = "/assets/O_Tempo_E_O_Vento.png",
             },
             new ModeloLivro
             {
@@ -111,7 +111,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Clarice Lispector",
                 Ano = 1977,
                 QuantidadeEstoque = 1,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\A_Hora_da_Estrela.png",
+                Capa = "/assets/A_Hora_da_Estrela.png",
             },
             new ModeloLivro
             {
@@ -120,7 +120,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "Rachel de Queiroz",
                 Ano = 1930,
                 QuantidadeEstoque = 1,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\O_Quinze.jpeg",
+                Capa = "/assets/O_Quinze.jpeg",
             },
             new ModeloLivro
             {
@@ -129,7 +129,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "José Lins do Rego",
                 Ano = 1932,
                 QuantidadeEstoque = 5,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Menino_De_Engenho.jpg",
+                Capa = "/assets/Menino_De_Engenho.jpg",
             },
             new ModeloLivro
             {
@@ -138,7 +138,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "João Guimarães Rosa",
                 Ano = 1946,
                 QuantidadeEstoque = 3,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Sagarana.jpg",
+                Capa = "/assets/Sagarana.jpg",
             },
             new ModeloLivro
             {
@@ -147,7 +147,7 @@ namespace BE_Biblioteca.Controllers
                 Autor = "José Lins do Rego",
                 Ano = 1943,
                 QuantidadeEstoque = 1,
-                Capa = "C:\\Users\\Aluno\\Desktop\\BE_Biblioteca\\BE_Biblioteca\\assets\\Fogo_Morto.jpg",
+                Capa = "/assets/Fogo_Morto.jpg",
             },
         };
 
@@ -178,7 +178,7 @@ namespace BE_Biblioteca.Controllers
                 item.Titulo = item.Titulo.ToLower();
                 if (item.Titulo.Contains(titulo)) //CONTAINS BUSCA TODAS AS PALAVRAS QUE CONTÉM O PEDIDO // STARTSWITH BUSCA TODAS QUE COMEÇAM
                     list.Add(item);             // ENDSWITH BUSCA TODAS QUE TERMINAM
-            }   
+            }
             if (list is null)
                 return NotFound("Este livro não foi encontrado");
 
@@ -214,6 +214,8 @@ namespace BE_Biblioteca.Controllers
         public ActionResult<List<ModeloLivro>> DevolverLivro(ModeloEmprestimo editar)
         {
             var busca = listaLivros.Find(x => x.Id == editar.IdLivro);
+            var buscaNome = listaEmprestimos.Find(x => x.Nome == editar.Nome);
+            var buscaData = listaEmprestimos.Find(x => x.AnoNasc == editar.AnoNasc);
 
             if (busca is null)
                 return NotFound("Livro não encontrado");
@@ -221,7 +223,7 @@ namespace BE_Biblioteca.Controllers
             if (busca.QuantidadeEmprestada == 0)
                 return Ok("Sem livros emprestados no momento!");
 
-            
+
             listaEmprestimos.Add(editar);
             busca.QuantidadeEstoque = busca.QuantidadeEstoque + 1;
             busca.QuantidadeEmprestada = busca.QuantidadeEmprestada - 1;
