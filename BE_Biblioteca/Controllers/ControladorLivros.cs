@@ -199,10 +199,10 @@ namespace BE_Biblioteca.Controllers
             var busca = listaLivros.Find(x => x.Id == novoEmprestimo.IdLivro);
 
             if (busca is null)
-                return NotFound("Livro não encontrado");
+                return NotFound(new { message = "Livro não encontrado"});
 
             if (busca.QuantidadeEstoque == 0)
-                return Ok("Sem livros no estoque para o empréstimo!");
+                return BadRequest(new {message="Sem livros no estoque para o empréstimo!" });
 
             busca.QuantidadeEstoque = busca.QuantidadeEstoque - 1;
             busca.QuantidadeEmprestada = busca.QuantidadeEmprestada + 1;
